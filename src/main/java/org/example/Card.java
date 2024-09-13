@@ -99,14 +99,10 @@ public class Card {
         int reps = Integer.parseInt(sourceDict.get("reps").toString());
         int lapses = Integer.parseInt(sourceDict.get("lapses").toString());
         State state = State.values()[Integer.parseInt(sourceDict.get("state").toString())];
-
         LocalDate lastReview = null;
         if (sourceDict.containsKey("last_review")) {
             lastReview = LocalDate.parse((String) sourceDict.get("last_review"), DateTimeFormatter.ISO_DATE);
         }
-
         return new Card(due, stability, difficulty, elapsedDays, scheduledDays, reps, lapses, state, lastReview);
     }
-
-
 }
