@@ -14,7 +14,7 @@ public class Card {
     private int elapsedDays;
     private int scheduledDays;
     private int reps;
-    private int lapses;
+    int lapses;
     private State state;
     private LocalDate lastReview;
 
@@ -60,6 +60,22 @@ public class Card {
         );
     }
 
+    public Card(Card card) {
+        this.due = card.due;
+        this.stability = card.stability;
+        this.difficulty = card.difficulty;
+        this.elapsedDays = card.elapsedDays;
+        this.scheduledDays = card.scheduledDays;
+        this.reps = card.reps;
+        this.lapses = card.lapses;
+        this.state = card.state;
+        this.lastReview = card.lastReview;
+
+    }
+
+    public void setState(State state){
+        this.state = state;
+    }
     public Optional<Double> getRetrievability(LocalDate now) {
         final float DECAY = -0.5f;
         final double FACTOR = Math.pow(0.9, 1 / DECAY) - 1;
