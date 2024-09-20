@@ -122,3 +122,88 @@ public class Card {
         return new Card(due, stability, difficulty, elapsedDays, scheduledDays, reps, lapses, state, lastReview);
     }
 }
+
+
+//
+//   import java.time.LocalDateTime;
+//import java.time.temporal.ChronoUnit;
+//import java.util.HashMap;
+//import java.util.Map;
+//
+//class SchedulingCards {
+//    private Card again;
+//    private Card hard;
+//    private Card good;
+//    private Card easy;
+//
+//    public SchedulingCards(Card card) {
+//        this.again = new Card(card); // Assuming Card has a copy constructor
+//        this.hard = new Card(card);
+//        this.good = new Card(card);
+//        this.easy = new Card(card);
+//    }
+//
+//    public void updateState(State state) {
+//        if (state == State.New) {
+//            this.again.setState(State.Learning);
+//            this.hard.setState(State.Learning);
+//            this.good.setState(State.Learning);
+//            this.easy.setState(State.Review);
+//        } else if (state == State.Learning || state == State.Relearning) {
+//            this.again.setState(state);
+//            this.hard.setState(state);
+//            this.good.setState(State.Review);
+//            this.easy.setState(State.Review);
+//        } else if (state == State.Review) {
+//            this.again.setState(State.Relearning);
+//            this.hard.setState(State.Review);
+//            this.good.setState(State.Review);
+//            this.easy.setState(State.Review);
+//            this.again.incrementLapses(); // Assuming there's a method to increment lapses
+//        }
+//    }
+//
+//    public void schedule(LocalDateTime now, int hardInterval, int goodInterval, int easyInterval) {
+//        this.again.setScheduledDays(0);
+//        this.hard.setScheduledDays(hardInterval);
+//        this.good.setScheduledDays(goodInterval);
+//        this.easy.setScheduledDays(easyInterval);
+//        this.again.setDue(now.plusMinutes(5));
+//
+//        if (hardInterval > 0) {
+//            this.hard.setDue(now.plusDays(hardInterval));
+//        } else {
+//            this.hard.setDue(now.plusMinutes(10));
+//        }
+//
+//        this.good.setDue(now.plusDays(goodInterval));
+//        this.easy.setDue(now.plusDays(easyInterval));
+//    }
+//
+//    public Map<Integer, SchedulingInfo> recordLog(Card card, LocalDateTime now) {
+//        Map<Integer, SchedulingInfo> log = new HashMap<>();
+//
+//        log.put(Rating.Again, new SchedulingInfo(
+//                this.again,
+//                new ReviewLog(Rating.Again, this.again.getScheduledDays(), card.getElapsedDays(), now, card.getState())
+//        ));
+//
+//        log.put(Rating.Hard, new SchedulingInfo(
+//                this.hard,
+//                new ReviewLog(Rating.Hard, this.hard.getScheduledDays(), card.getElapsedDays(), now, card.getState())
+//        ));
+//
+//        log.put(Rating.Good, new SchedulingInfo(
+//                this.good,
+//                new ReviewLog(Rating.Good, this.good.getScheduledDays(), card.getElapsedDays(), now, card.getState())
+//        ));
+//
+//        log.put(Rating.Easy, new SchedulingInfo(
+//                this.easy,
+//                new ReviewLog(Rating.Easy, this.easy.getScheduledDays(), card.getElapsedDays(), now, card.getState())
+//        ));
+//
+//        return log;
+//    }
+//}
+//
